@@ -1,1 +1,1 @@
-Fast-forward机制;
+Fast-forward机制
