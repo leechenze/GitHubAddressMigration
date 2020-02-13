@@ -270,8 +270,12 @@
     git checkout newCreate, 虽然本地没有这个newCreate分支, 但是远程有这个分支,
     当checkout进行的时候, 就会将远程的这个分支通过追踪到本地;
     
-    
+    如果要删除远端分支
+    首先,将本地的远端分支进行删除, git branch -d newCreate 
+    然后push推送(同步)到远程分支: 
+    git push GitHub --delete newCreate;
 
+    
 
 
 
