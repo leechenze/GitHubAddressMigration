@@ -247,7 +247,7 @@
     git remote add origin https://github.com/LiChenZe/-.git                 远程信息对接
 
     git push -u origin master                                               远程仓库写入信息到master分支(第一次写入  -u是建立联系)
-        git push -u asdf develop将本地分支develop推送到远程;
+        git push -u asdf develop 将本地分支develop推送到远程;
         
         
     git remote -v                                                           查看远程仓库地址
