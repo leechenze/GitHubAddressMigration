@@ -188,7 +188,7 @@
         git pull == git fetch + git merge
     git fetch                                                               从远程仓库拉取代码
         如果只用fetch拉取远程仓库的代码, git status 就会提示远程分支有提交,
-        需要git merge origin/master origin库上的master分支和本地分支的代码进行合并;
+        需要git merge origin/master, origin库上的master分支和本地分支的代码进行合并;
         所以这一步我们通常都用pull命令即可拉取和合并;
         
         如果是新开的一个开发分支, 那么就需要--no-ff阻止快进机制;
@@ -262,6 +262,13 @@
     git branch -r                                                           查看远程分支
     
     git branch -a                                                           查看全部分支(本地的,远程的);
+    
+    在GitHub远端创建一个分支 newCreate
+    git fetch拉取下来之后, 输入git branch -a 可以查看到新增的远端分支newCreate;
+    这里搞清楚一件事: 三个区别: 本地分支, 远程分支, 远程追踪分支;
+    远程追踪分支是一个用来连接本地分支和远程分支的一个联系;
+    git checkout newCreate, 虽然本地没有这个newCreate分支, 但是远程有这个分支,
+    当checkout进行的时候, 就会将远程的这个分支通过追踪到本地;
     
     
 
