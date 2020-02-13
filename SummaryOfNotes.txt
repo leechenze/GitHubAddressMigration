@@ -152,6 +152,9 @@
     git branch                                                              查看分支
     git checkout develop                                                    切换分支
     git checkout -b lesson                                                  创建并且切换一个分支
+    git checkout -f lesson                                                  强制切换分支
+    git clean -n                                                             这个是清除文件预览
+    git clean -f                                                            强制清除文件
     git branch -d lesson                                                    删除分支
         注意在lesson分支下不能删除lesson分支, 只有在别的分支下才能删除lesson分支;
         如果要删除的分支下有提交的代码但是没有和master合并的话, 也会删除不了
