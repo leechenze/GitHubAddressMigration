@@ -276,9 +276,20 @@
     git push GitHub --delete newCreate;
 
     
+    在github新建一个库名为GitHubAddressMigration, 进行地址迁移
+    
+    git remote set-url GitHub https://github.com/LiChenZe/GitHubAddressMigration.git            地址迁移
+        然后 git remote -v 地址变更;
+        那么地址迁移之后如何将 原库的所有分支和内容 一次性的推送到新库:
+    
+    git push --all                                                                               将所有分支推送到仓库;
+    
+    
+    
 
-
-
+    忽略文件: 
+    创建.gitignore文件, 将不需要提交的文件或者文件夹路径写入其中即可;
+    
 
 
 
