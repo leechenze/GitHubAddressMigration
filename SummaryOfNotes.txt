@@ -1,0 +1,270 @@
+﻿博学之, 审问之, 慎思之, 明辨之, 笃行之;
+
+
+
+
+命令:
+    mkdir GitHub                                                        创建文件夹
+    touch 1.txt                                                         创建文件
+    ls                                                                  罗列目录下的我文件
+    pwd                                                                 显示当前目录路径;
+    cd                                                                  更改路径
+    ls -la                                                              显示所有隐藏和为隐藏的文件;
+    rm 1.txt                                                            删除文件
+    rm -rf GitHub/                                                      删除文件夹  rf(强制)
+    code .                                                              打开vscode
+
+
+
+
+
+
+
+操作:
+    git config --list                                                   显示配置列表
+    git config --global -l                                              查看全局配置
+    git config --global user.name "leecs"                               配置用户名
+    git config --global user.email "18611120990@163.com"                配置密码
+    git help                                                            git帮助
+    git help commit                                                     git关于commit命令的帮助;
+    
+    git init                                                            初始化git
+    在mac下shift+commond+.可以显示隐藏的.git文件夹;
+    git status                                                          查看当前git状态
+    红色表示未添加文件或者删除的文件, 绿色表示添加的文件
+    git add first.txt                                                   添加文件到暂存区
+    git rm --cached first.txt                                           从暂存区删除文件
+    git add .                                                           添加所有文件到暂存区
+    git commit                                                          从暂存区提交文件到仓库中
+    然后输入提交的文件备注, 完成后ESC退出, 在输入:wq确认并推出提交
+    git commit -m '提交的文件备注'                                       从暂存区提交文件到仓库中并且输入文件注释
+    这一命令, 完全简化了 commit, 输入一个-m 即可直接提交, 没有繁琐的步骤;
+    
+
+    git log                                                             打印日志,显示之前提交的一些文件;
+    信息如下:
+        commit ec69d1b58dfadd84bd8c432c55bae07e2ecf088d (HEAD -> master)
+            提交文件在master下
+        Author: leechense <leeczyc@gmail.com>
+            作者leechense
+        Date:   Tue Feb 11 03:04:52 2020 +0800
+            提交日期
+    
+    git log --author="leechense"                                        查看作者leechense所提交的文件
+    
+    当first.txt 文件变动添加一段代码后, status显示红色的 modified
+    意思就是说有修改的文件;
+    
+    此时继续add . 将修改的文件添加, 提交....
+    
+    git diff                                                            查看文件修改前后的变化;
+        只有在没add之前的文件才能查看diff, 但是如果已经add到暂存区的文件, 可以通过以下命令查看
+    git diff --staged
+        stage其实就是我们说的暂存区, 他是一个状态, 一个文件只有到暂存区才会有这个状态;
+    
+
+    git rm third.txt
+    删除third文件, status显示红色deleted:  third.txt;
+    
+    git add .
+    git commit -m ''
+
+    此时deleted: third.txt 显示绿色, 代表已经从仓库删除;
+    
+    
+
+
+    把first.txt文件改为home.txt文件, status显示:
+        deleted:    first.txt
+
+        home.txt
+    
+    删除了first.txt, 新增了home.txt文件
+    
+    git add . 时候显示如下:
+        renamed:    first.txt -> home.txt
+
+    改名再简单的命令行操作如下:
+    
+    git mv first.txt home.txt                                           修改文件位置(解读为: 将first.txt改为home.txt);
+
+    git mv home.txt stuff/pretty.txt                                   将home.txt文件移动到stuff文件夹下并改为pretty.txt
+
+    git commit -am ''                                                   相当于git add . + git commit -m ''操作;
+        但是这个操作只支持修改的文件, 新增的文件还是要另外 git add .
+    
+    git checkout                                                         查看最后一次改动的文件;
+    
+    git checkout -- about.txt                                            还原文件, 将about.txt文件恢复到最后一次的commit
+    
+    将about.txt删除
+
+    查看状态是红色的 deleted:   about.txt
+
+    git diff    查看修改或者删除的那些文件;
+
+    恢复或者找回about.txt文件  git checkout -- about.txt
+    
+    正常改动一个about.txt文件, status是modefied, 这时将about.txt添加到暂存区;
+    
+    添加到暂存区就是已经在git追踪的一个状态了, 这是我们可以撤销变动, 恢复原来的文件, 
+
+    git checkout -- about.txt
+
+    这时候status的状态就是: 有东西发生变化, 但是没有提交, 如果说想要撤销这一步, 使用:
+    
+    如果文件已经被git追踪就是已经add到暂存区的文件那么将不能使用checkout操作撤销修改;
+    
+    git reset HEAD about.txt;                                               取消追踪一个文件;
+    
+    取消追踪这个文件完成之后在进行-- checkout 操作即可;
+    
+    
+    版本回退
+        创建version.txt文件, 写入version 并且添加提交备注'version1',代表第一个版本;
+        将version.txt文件内容改为 version2 并且添加提交备注'version2',代表第二个版本;
+        将version.txt文件内容改为 version3 并且添加提交备注'version2',代表第三个版本;
+        一次类推添加提交... 到第五个版本  git log 可以查看日志信息, 包括我们这个版本号;
+        
+                                                                            HEAD相当于一个邮标,或者说是指针,有很多复杂的功能;
+    git reset --hard HEAD^                                                  回退到上一个版本;
+    git reset --hard HEAD^^                                                 回退到上两个版本
+    以此类推,想恢复到上几个版本, 就添加几个^符号即可;
+    
+    git reset --hard 1d107d0                                                回退到指定id的版本, 这个哈希值(提交的id号)只输入前七位即可;
+    (不推荐)注意如果回退到指定的版本之后, 这个版本之后的其他本都不会再有了, (回退成功之后, 最晚可查的版本就是这个指定id回退的版本);
+    
+    git reflog                                                              查看版本回退的更改;ref代表索引;
+    
+    git checkout 1d107d0 -- version.txt                                    推荐使用的版本回退,正确解读为(切换到指定版本)
+        checkout和reset的区别就是 不会删除之前的版本;
+    
+    回退到指定的版本之后, git commit -am 'version5'即可;
+    
+    
+
+    git和github本质的区别
+        代码本地的代码就是在.git文件夹中, .git中有个refs就是存储的内容的位置, refs下的heads下的master,
+        这个master是默认分支的一个, 我们的本地存储就是存储到这个里面来; 远程仓库就是GitHub;
+        
+    
+    git branch develop                                                      创建分支
+    git branch                                                              查看分支
+    git checkout develop                                                    切换分支
+    git checkout -b lesson                                                  创建并且切换一个分支
+    git branch -d lesson                                                    删除分支
+        注意在lesson分支下不能删除lesson分支, 只有在别的分支下才能删除lesson分支;
+        如果要删除的分支下有提交的代码但是没有和master合并的话, 也会删除不了
+        如果要强制删除要把 -d 改为 -D 表示强制删除;
+
+        每当新建一个分支, 就会将master分支上的所有东西拷贝一份到新建分支;
+
+    
+    git branch develop ff91dd4                                              恢复已经删除的分支;
+        后面添加这个分支被删除时返回的哈希值即可;
+    
+    git merge develop                                                       合并分支
+    
+    git merge --abort                                                      如果合并之后有冲突时, 可以--abort(后悔药), 撤销合并;
+    
+        冲突文件必须是完全不一致的代码字段合并到一块会冲突, 如果某些字段的不同不会导致冲突;
+    
+    --abort解决冲突 只是暂时的, 回退到冲突之前的代码, 根治冲突, 在冲突字段做出选择, 可以保留当前的
+    也可以保留传入的, 又可以两者都保留下来, 然后add - commit 即可;
+    
+    git log --oneline                                                       将日志信息打一行(简写);
+    git log --oneline --graph                                               打印版本线图
+    git log --oneline --graph --all                                         打印所有分支的版本线图;
+    git log --oneline --graph -1                                           打印最近的一次commit
+    git log --oneline --graph -3                                           打印最近三次的commit
+    
+    
+    git merge develop --no-ff                                               取消快进机制的合并;
+    
+    git pull                                                                从远端仓库拉取代码并且合并到本地的主分支;
+        git pull == git fetch + git merge
+    git fetch                                                               从远端仓库拉取代码
+        如果只用fetch拉取远端仓库的代码, git status 就会提示远端分支有提交,
+        需要git merge origin/master origin库上的master分支和本地分支的代码进行合并;
+        所以这一步我们通常都用pull命令即可拉取和合并;
+        
+        如果是新开的一个开发分支, 那么就需要--no-ff阻止快进机制;
+        如果是多人协同开发, 那我们就需要快进机制;
+    
+    git reset --hard ORIG_HEAD                                              回到没有合并时候的状态;
+    git log --oneline --graph 查看分支合并到之前分支了;
+
+    git merge --no-ff --no-commit develop                                   合并develop时, 只更改当前的工作目录, 不提交这个版本;
+        这种情况也是常见的, 经常在版本控制时, 有时就是仅仅合并, 但是不提交, 先去测试一下develop分支下的这个项目;
+        测试完成确认没有问题之后才会进行提交;  
+        此时git status 提示:当前的合并已经成功了, 但是停止在了暂存区
+        然后commit 即可提交; 然后在查看版本线图;
+
+    git merge --squash develop                                      压缩版本;
+        注(--no-ff和--squash 两个命令是冲突, 不可以同时写, 因为压缩的话就不能进行快进了);
+        有时候我们提交一些小功能, 认为这个不需要作为一个新的版本出现, 所以在合并分支的时候,
+        就可以用--squash命令 将多次提交的多个版本压缩为一个版本;
+        
+        另外 --squash命令 同样会有--no-commit的功能, 合并时不提交文件; 合并之后还需要再次commit文件;
+        当git commit时, 就会显示当前压缩的这些文件包含哪些提交;
+        
+    git branch --merged                                                     打印合并的分支
+    git branch --no-merged                                                  打印未合并的分支
+        注(必须是在master分支下打印, 且刚开始新建的分支都默认是合并分支);
+        如果某个分支下有文件提交而未合并, 那么这就是未合并文件;
+    
+
+    git branch --no-merged | egrep -v "(^\*|master|develop)" | xargs git branch  -D
+        删除所有未合并的分支;
+    git branch --merged | egrep -v "(^\*|master|develop)" | xargs git branch  -d
+        删除所有已经合并的分支;
+    
+    
+
+
+    git clone https://github.com/LiChenZe/GitHub.git                        从远程仓库下载项目;
+        clone 支持很多种类的协议;
+        clone 下载下的项目会自动checkout 到master分支下, 解决方案:
+            git clone --no-checkout https://github.com/LiChenZe/GitHub.git
+        clone 下来的项目名称就是git地址后面的 GitHub;
+        clone 地址后面加上一个空格 newName 那么克隆下来的项目就会以newName命名, 而且不在以GitHub命名
+            git clone https://github.com/LiChenZe/GitHub.git newName
+
+    
+    git clone --bare https://github.com/LiChenZe/GitHub.git                 下载本地仓库信息;
+        
+    
+    
+
+    
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
