@@ -181,10 +181,10 @@
     
     git merge develop --no-ff                                               取消快进机制的合并;
     
-    git pull                                                                从远端仓库拉取代码并且合并到本地的主分支;
+    git pull                                                                从远程仓库拉取代码并且合并到本地的主分支;
         git pull == git fetch + git merge
-    git fetch                                                               从远端仓库拉取代码
-        如果只用fetch拉取远端仓库的代码, git status 就会提示远端分支有提交,
+    git fetch                                                               从远程仓库拉取代码
+        如果只用fetch拉取远程仓库的代码, git status 就会提示远程分支有提交,
         需要git merge origin/master origin库上的master分支和本地分支的代码进行合并;
         所以这一步我们通常都用pull命令即可拉取和合并;
         
@@ -231,24 +231,36 @@
             git clone https://github.com/LiChenZe/GitHub.git newName
 
     
-    git clone --bare https://github.com/LiChenZe/GitHub.git                 下载本地仓库信息;
+    git clone --bare https://github.com/LiChenZe/GitHub.git GitInfo      下载本地仓库信息(下载.git文件)
+        克隆下的新项目GitInfo, 都是本地的仓库信息, 项目中的信息就是.git文件夹;
+        既然能把这个东西下载下来, 同样我们可以把这个.git进行本地克隆, 协同开发时
+        可以把这个发给其他人, 进行本地克隆;
+        
+        git clone  C:\Users\lee\Desktop\GitInfo newGitHub
+        
+        然后此时, 这个newGitHub文件夹和GitHub文件夹就是相同的;
         
     
     git remote add origin https://github.com/LiChenZe/-.git                 远程信息对接
 
-    git push -u origin master                                               远程仓库写入信息(第一次写入  -u)
+    git push -u origin master                                               远程仓库写入信息到master分支(第一次写入  -u是建立联系)
+        git push -u asdf develop将本地分支develop推送到远程;
+        
+        
+    git remote -v                                                           查看远程仓库地址
 
-    git remote -v                                                           查看远程地址
+    git remote                                                              查看远程仓库
     
     git remote show origin                                                  查看当前仓库基本信息;
     
     git pull origin master --allow-unrelated-histories                      合并独立仓库的历史
         refusing to merge unrelated histories 拒绝合并无关历史;
     
+    git branch -r                                                           查看远程分支
+    
+    git branch -a                                                           查看全部分支(本地的,远程的);
     
     
-    
-
 
 
 
