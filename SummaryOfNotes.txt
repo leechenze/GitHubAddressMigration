@@ -234,10 +234,16 @@
     git clone --bare https://github.com/LiChenZe/GitHub.git                 下载本地仓库信息;
         
     
-    
+    git remote add origin https://github.com/LiChenZe/-.git                 远程信息对接
 
-    
+    git push -u origin master                                               远程仓库写入信息(第一次写入  -u)
 
+    git remote -v                                                           查看远程地址
+    
+    git remote show origin                                                  查看当前仓库基本信息;
+    
+    git pull origin master --allow-unrelated-histories                      合并独立仓库的历史
+        refusing to merge unrelated histories 拒绝合并无关历史;
     
     
     
